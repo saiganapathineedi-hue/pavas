@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎁 Secret Gift</title>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(135deg,#ffe6f0,#ffd6ec);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+overflow:hidden;
+}
+
+.box{
+background:white;
+padding:30px;
+border-radius:20px;
+text-align:center;
+box-shadow:0 0 20px rgba(0,0,0,.2);
+max-width:350px;
+}
+
+input{
+padding:10px;
+width:80%;
+border-radius:8px;
+border:1px solid #ccc;
+margin-top:10px;
+}
+
+button{
+margin-top:15px;
+padding:10px 20px;
+border:none;
+background:#ff4f87;
+color:white;
+border-radius:8px;
+font-size:16px;
+cursor:pointer;
+}
+
+img{
+width:300px;
+border-radius:15px;
+margin-top:15px;
+box-shadow:0 0 15px rgba(0,0,0,.3);
+}
+
+#gift{
+display:none;
+}
+
+h1{
+color:#ff2e63;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box" id="login">
+<h2>🎁 Secret Gift</h2>
+
+<p>Enter the Secret Code</p>
+
+<input id="code" type="password">
+
+<br>
+
+<button onclick="openGift()">Open Gift</button>
+
+</div>
+
+<div class="box" id="gift">
+
+<h1>💖 Happy Friendship Day 💖</h1>
+
+<img src="pavas.jpeg">
+
+<h3>You are one of the best gifts in my life! 🥹❤️</h3>
+
+</div>
+
+<script>
+
+function openGift(){
+
+let pass=document.getElementById("code").value;
+
+if(pass==="HAPPY123"){
+
+document.getElementById("login").style.display="none";
+document.getElementById("gift").style.display="block";
+
+confetti({
+particleCount:300,
+spread:180,
+origin:{y:0.6}
+});
+
+for(let i=0;i<40;i++){
+
+let heart=document.createElement("div");
+
+heart.innerHTML="❤️";
+
+heart.style.position="fixed";
+heart.style.left=Math.random()*100+"vw";
+heart.style.top="100vh";
+heart.style.fontSize=(20+Math.random()*20)+"px";
+heart.style.transition="all 5s linear";
+heart.style.zIndex="9999";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.style.transform="translateY(-120vh)";
+heart.style.opacity="0";
+},100);
+
+setTimeout(()=>{
+heart.remove();
+},5000);
+
+}
+
+}else{
+
+alert("❌ Wrong Secret Code!");
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
